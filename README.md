@@ -16,13 +16,13 @@ Welcome to **Go-Tasks** ✨, a lightweight and powerful RESTful API built with G
 
 ## 📡 Endpoints
 
-| Method   | Endpoint        | Description                      |
-|----------|-----------------|----------------------------------|
-| `GET`    | `/list`         | Get all tasks 📋                 |
-| `GET`    | `/list/{id}`    | Get a specific task by ID 🔍     |
-| `POST`   | `/list`         | Add a new task ➕                |
-| `PATCH`  | `/list/{id}`    | Update a task's status ✅        |
-| `DELETE` | `/list/{id}`    | Delete a task by ID ❌           |
+| Method   | Endpoint     | Description                  |
+| -------- | ------------ | ---------------------------- |
+| `GET`    | `/list`      | Get all tasks 📋             |
+| `GET`    | `/list/{id}` | Get a specific task by ID 🔍 |
+| `POST`   | `/list`      | Add a new task ➕            |
+| `PATCH`  | `/list/{id}` | Update a task's status ✅    |
+| `DELETE` | `/list/{id}` | Delete a task by ID ❌       |
 
 ---
 
@@ -36,14 +36,18 @@ Welcome to **Go-Tasks** ✨, a lightweight and powerful RESTful API built with G
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/zineeddinehazi/go-tasks.git
 ```
+
 2. Run the server:
+
 ```bash
 cd go-tasks
 go run main.go
 ```
+
 3. Access the API at `http://localhost:8080` 🌍.
 
 ---
@@ -51,14 +55,19 @@ go run main.go
 ## 💡 Usage Examples
 
 ### Add a Task ➕
+
 ```bash
 curl -X POST http://localhost:8080/list -H "Content-Type: application/json" -d '{"id": "5", "content": "Write documentation", "isdone": false}'
 ```
+
 ### Update a Task ✅
+
 ```bash
 curl -X PATCH http://localhost:8080/list/5 -H "Content-Type: application/json" -d '{"isdone": true}'
 ```
+
 ### Delete a Task ❌
+
 ```bash
 curl -X DELETE http://localhost:8080/list/5
 ```
@@ -84,5 +93,3 @@ Built with Go 🐹 and Gorilla Mux 🧩. Inspired by the need for simple, reliab
 ---
 
 Thank you for using Go-Tasks! If you have any questions or suggestions, feel free to reach out 📩. Happy coding! 💻✨
-
-```
