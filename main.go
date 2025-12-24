@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -23,30 +22,6 @@ var taskList = []Task{
 	{ID: "4", Content: "Complete my lab reports", IsDone: false},
 }
 
-func findWantedTask(wantedID string) (*Task, error) {
-	for i := range taskList {
-		// The use of values will return the pointer of a copy
-		/*if task.ID == wantedID {
-		    return &task, nil
-		}*/
-		// We use indexes instead
-		if taskList[i].ID == wantedID {
-			return &taskList[i], nil
-		}
-	}
-	return nil, errors.New("Task not found")
-}
-
-func deleteWantedTask(wantedTask Task) []Task {
-	var newTaskList []Task
-	for _, task := range taskList {
-		if task != wantedTask {
-			newTaskList = append(newTaskList, task)
-		}
-	}
-	return newTaskList
-}
-
 func getList(w http.ResponseWriter, r *http.Request) {
 	// Tell the browser the content type
 	w.Header().Set("Content-Type", "application/json")
@@ -57,46 +32,39 @@ func getList(w http.ResponseWriter, r *http.Request) {
 func getTask(w http.ResponseWriter, r *http.Request) {
 	// Handle URL parameters
 	vars := mux.Vars(r)
-	taskID := vars["id"]
-	wantedTask, err := findWantedTask(taskID)
-	if err != nil {
-		// Handeling task not found
-		http.Error(w, err.Error(), http.StatusNotFound)
-		return
+	wantedID := vars["id"]
+	for i, task := range taskList {
+		if task.ID == wantedID {
+			// Sending back updated data as JSON
+			w.Header().Set("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(taskList[i])
+		}
 	}
-	// Tell the browser the content type
-	w.Header().Set("Content-Type", "application/json")
-	// Encode the Go struct into JSON
-	json.NewEncoder(w).Encode(wantedTask)
 }
 
 func updateTask(w http.ResponseWriter, r *http.Request) {
 	// Handling URL parameters
 	vars := mux.Vars(r)
-	taskID := vars["id"]
-	wantedTask, err := findWantedTask(taskID)
-	if err != nil {
-		// Handling task not found
-		http.Error(w, err.Error(), http.StatusNotFound)
-		return
+	wantedID := vars["id"]
+	for i, task := range taskList {
+		if task.ID == wantedID {
+			taskList[i].IsDone = !taskList[i].IsDone
+			// Sending back updated data as JSON
+			w.Header().Set("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(taskList[i])
+		}
 	}
-	wantedTask.IsDone = !wantedTask.IsDone
-	// Sending back updated data as JSON
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(wantedTask)
 }
 
 func deleteTask(w http.ResponseWriter, r *http.Request) {
 	// Handling URL parameters
 	vars := mux.Vars(r)
-	taskID := vars["id"]
-	wantedTask, err := findWantedTask(taskID)
-	if err != nil {
-		// Handling task not found
-		http.Error(w, err.Error(), http.StatusNotFound)
-		return
+	wantedID := vars["id"]
+	for i, task := range taskList {
+		if task.ID == wantedID {
+			taskList = append(taskList[:i], taskList[i+1:]...)
+		}
 	}
-	taskList = deleteWantedTask(*wantedTask)
 	// Sending success JSON feedback
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
