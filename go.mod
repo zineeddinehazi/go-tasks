@@ -1,4 +1,4 @@
-module example/go-taska
+module example/go-tasks
 
 go 1.25.5
 
