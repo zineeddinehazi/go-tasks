@@ -16,6 +16,25 @@ Welcome to **Go-Tasks**, a lightweight RESTful API built with Go, Gorilla Mux, a
 
 ---
 
+## Project Structure
+
+```bash
+go-tasks/
+├─ cmd/
+│  └─ main.go
+├─ pkg/
+│  ├─ errors.go
+│  ├─ models.go
+│  ├─ router.go
+│  ├─ utilsDB.go
+├─ go.mod
+├─ go.sum
+└─ tasks.db
+
+```
+
+--- 
+
 ## Endpoints
 
 | Method   | Endpoint     | Description               |
@@ -31,6 +50,7 @@ Welcome to **Go-Tasks**, a lightweight RESTful API built with Go, Gorilla Mux, a
 ## Getting Started
 
 ### Prerequisites
+
 - Go 1.20+ 
 - `go get github.com/gorilla/mux`
 - `go get github.com/mattn/go-sqlite3`
