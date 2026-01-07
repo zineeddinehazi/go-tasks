@@ -1,16 +1,18 @@
 # 🚀 Go-Tasks: Task Management API
 
-Welcome to **Go-Tasks** ✨, a lightweight and powerful RESTful API built with Go and Gorilla Mux for managing your tasks efficiently. Whether you're learning Go, building a portfolio, or integrating with a frontend, this API provides a clean, reliable, and fully documented backend for your task management needs 🛠️.
+Welcome to **Go-Tasks** ✨, a lightweight RESTful API built with Go, Gorilla Mux, and SQLite for managing your tasks efficiently. Perfect for learning Go backend development, practicing REST design, and building portfolio-ready projects 🛠️.
 
 ---
 
 ## 🌟 Features
 
-- **Full CRUD Operations** 📥📤: Create, read, update, and delete tasks with ease.
-- **RESTful Design** 🌐: Follows REST conventions for predictable and scalable endpoints.
-- **Error Handling** ⚠️: Detailed error messages and proper HTTP status codes for every scenario.
-- **JSON Responses** 📦: All data is served in JSON format for seamless frontend integration.
-- **Easy Setup** ⚡: Minimal dependencies and clear documentation.
+- **Persistent SQLite storage** 🗄️: Tasks saved in `tasks.db` file (auto-created)
+- **Full CRUD operations** 📤: Create, read, update, toggle status, delete tasks
+- **Repository pattern** 🧱: Clean separation of database logic in `TaskRepository`
+- **Structured project layout** 📂: Organized packages for handlers, router, repository
+- **RESTful endpoints** 🌐: Predictable URLs and proper HTTP status codes
+- **JSON I/O** 📦: Seamless frontend integration
+- **Toggle completion** ✅: Single request flips `isdone` boolean in database
 
 ---
 
@@ -29,9 +31,9 @@ Welcome to **Go-Tasks** ✨, a lightweight and powerful RESTful API built with G
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Go 1.16 or higher 🐹
-- Gorilla Mux (`go get github.com/gorilla/mux`) 🧩
+- Go 1.20+ 
+- `go get github.com/gorilla/mux`
+- `go get github.com/mattn/go-sqlite3`
 
 ### Installation
 
@@ -45,7 +47,7 @@ git clone https://github.com/zineeddinehazi/go-tasks.git
 
 ```bash
 cd go-tasks
-go run main.go
+go run cd/main.go
 ```
 
 3. Access the API at `http://localhost:8080` 🌍.
@@ -57,13 +59,13 @@ go run main.go
 ### Add a Task ➕
 
 ```bash
-curl -X POST http://localhost:8080/list -H "Content-Type: application/json" -d '{"id": "5", "content": "Write documentation", "isdone": false}'
+curl -X POST http://localhost:8080/list -H "Content-Type: application/json" -d '{"content": "Write documentation", "isdone": false}'
 ```
 
 ### Update a Task ✅
 
 ```bash
-curl -X PATCH http://localhost:8080/list/5 -H "Content-Type: application/json" -d '{"isdone": true}'
+curl -X PATCH http://localhost:8080/list/5 -H "Content-Type: application/json" -d '{}'
 ```
 
 ### Delete a Task ❌
@@ -88,7 +90,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 🙏 Acknowledgments
 
-Built with Go 🐹 and Gorilla Mux 🧩. Inspired by the need for simple, reliable, and beautiful APIs 💡.
+Built with Go 🐹, Gorilla Mux 🧩, and SQLite 🗄️. Inspired by the need for simple, reliable, and beautiful APIs 💡.
 
 ---
 
