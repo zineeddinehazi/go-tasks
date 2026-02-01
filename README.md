@@ -1,6 +1,6 @@
 # 🚀 Go-Tasks: Task Management API
 
-Welcome to **Go-Tasks**, a lightweight RESTful API built with Go, Gorilla Mux, and SQLite for managing your tasks efficiently. Perfect for learning Go backend development, practicing REST design, and building portfolio-ready projects.
+Welcome to **tasks**, a lightweight RESTful API built with Go, Gorilla Mux, and SQLite for managing your tasks efficiently. Perfect for learning Go backend development, practicing REST design, and building portfolio-ready projects.
 
 ---
 
@@ -19,7 +19,7 @@ Welcome to **Go-Tasks**, a lightweight RESTful API built with Go, Gorilla Mux, a
 ## Project Structure
 
 ```bash
-go-tasks/
+tasks/
 ├─ cmd/
 │  └─ main.go
 ├─ pkg/
@@ -60,13 +60,13 @@ go-tasks/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/zineeddinehazi/go-tasks.git
+git clone https://github.com/zineeddinehazi/tasks.git
 ```
 
 2. Run the server:
 
 ```bash
-cd go-tasks
+cd tasks
 go run cd/main.go
 ```
 

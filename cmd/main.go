@@ -1,7 +1,7 @@
 package main
 
 import (
-	"example/go-tasks/pkg"
+	"example/tasks/pkg"
 	"fmt"
 	"log"
 	"net/http"
